@@ -1,14 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baiscope</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-    <header>
 
+<body>
+    <header class="p-3 mb-3 border-bottom text-bg-dark text-white">
+        <div class="container-fluid">
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+                    <img src="assets/images/icons/baiscope.png" class="" alt="Baiscope" srcset="" width="150">
+                </a>
+                <div class="d-inline-flex align-items-center justify-content-end">
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="#" class="nav-link px-2 link-light">Home</a></li>
+                        <li><a href="#" class="nav-link px-2 link-light">Discover</a></li>
+                        <li>
+                            <div class="nav-link px-2 dropdown text-end">
+                                <a href="#" class="d-block link-light text-decoration-none dropdown-toggle"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Browse
+                                </a>
+                                <ul class="dropdown-menu text-small bg-black" style="">
+                                    <li><a class="dropdown-item link-light" href="#">By Keyword: Action, Love, War, Horror, Comedy,
+                                            Sci-Fi</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item link-light" href="#">By IMDb ID</a></li>
+                                    <li><a class="dropdown-item link-light" href="#">By Genre</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="#" class="nav-link px-2 link-light">Top Rated</a></li>
+                        <li><a href="#" class="nav-link px-2 link-light">Favourites</a></li>
+                    </ul>
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 ms-lg-3" role="search">
+                        <input type="search" class="form-control" placeholder="Find a movie..." aria-label="Search">
+                    </form>
+                </div>
+
+            </div>
+        </div>
     </header>
     <main>
         <section>
@@ -18,6 +56,8 @@
     <footer>
 
     </footer>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>
