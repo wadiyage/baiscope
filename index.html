@@ -5,7 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baiscope</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- Bootstrap Carousel CSS -->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="assets/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/owl-carousel/owl.theme.default.min.css">
+    <!-- Extended Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -50,7 +55,7 @@
     </header>
     <main>
         <section>
-            <div class="px-4 pt-5 my-5 text-center border-bottom">
+            <div class="px-4 pt-5 text-center border-bottom">
                 <h1 class="display-4 fw-bold text-body-emphasis text-uppercase">Discover Your Next Favorite Movie</h1>
                 <div class="col-lg-6 mx-auto">
                     <p class="lead mb-4">Search by title, keyword, or IMDb ID — powered by the OMDb API.</p>
@@ -75,8 +80,8 @@
             </div>
         </section>
         <section>
-            <div class="container px-4 py-5 border-bottom">
-                <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+            <div class="container-fluid px-4 py-5 border-bottom">
+                <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5 mx-0">
                     <div class="col-md-5 d-flex flex-column align-items-start gap-2">
                         <h2 class="fw-bold text-body-emphasis">Discover a Movie</h2>
                         <p class="text-body-secondary">Feeling unsure what to watch? Let us pick something for you.</p>
@@ -100,8 +105,11 @@
                                 <p class="card-text mb-auto">Dr. Victor Frankenstein, a brilliant but egotistical
                                     scientist, brings a creature to life in a monstrous experiment that ultimately leads
                                     to the undoing of both the creator and his tragic creation.</p>
-                                <p class="fs-6 fw-light text-body-emphasis"><span class="fw-medium text-body-emphasis">Director:</span> Guillermo del Toro</p>
-                                <p class="fs-6 fw-light text-body-emphasis"><span class="fw-medium text-body-emphasis">Stars:</span> Oscar Isaac, Jacob Elordi, Christoph Waltz</p>
+                                <p class="fs-6 fw-light text-body-emphasis"><span
+                                        class="fw-medium text-body-emphasis">Director:</span> Guillermo del Toro</p>
+                                <p class="fs-6 fw-light text-body-emphasis"><span
+                                        class="fw-medium text-body-emphasis">Stars:</span> Oscar Isaac, Jacob Elordi,
+                                    Christoph Waltz</p>
 
 
                                 <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
@@ -120,11 +128,170 @@
                 </div>
             </div>
         </section>
+        <section>
+            <div class="container-fluid px-4 py-5 border-bottom">
+                <div class="owl-carousel row my-5">
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top"
+                                height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%"
+                                    fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group"> <button type="button"
+                                            class="btn btn-sm btn-outline-secondary">View</button> <button type="button"
+                                            class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div> <small class="text-body-secondary">9 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top"
+                                height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%"
+                                    fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group"> <button type="button"
+                                            class="btn btn-sm btn-outline-secondary">View</button> <button type="button"
+                                            class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div> <small class="text-body-secondary">9 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top"
+                                height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%"
+                                    fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group"> <button type="button"
+                                            class="btn btn-sm btn-outline-secondary">View</button> <button type="button"
+                                            class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div> <small class="text-body-secondary">9 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top"
+                                height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%"
+                                    fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group"> <button type="button"
+                                            class="btn btn-sm btn-outline-secondary">View</button> <button type="button"
+                                            class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div> <small class="text-body-secondary">9 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top"
+                                height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%"
+                                    fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group"> <button type="button"
+                                            class="btn btn-sm btn-outline-secondary">View</button> <button type="button"
+                                            class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div> <small class="text-body-secondary">9 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top"
+                                height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%"
+                                    fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group"> <button type="button"
+                                            class="btn btn-sm btn-outline-secondary">View</button> <button type="button"
+                                            class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div> <small class="text-body-secondary">9 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top"
+                                height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%"
+                                    fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group"> <button type="button"
+                                            class="btn btn-sm btn-outline-secondary">View</button> <button type="button"
+                                            class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div> <small class="text-body-secondary">9 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
 
     </footer>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery local file -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="assets/owl-carousel/owl.carousel.min.js"></script>
+    <!-- Custom JS -->
     <script src="assets/js/main.js"></script>
 </body>
 
