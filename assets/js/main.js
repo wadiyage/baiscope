@@ -3,7 +3,6 @@ console.log("Hi, I'm JS, and I'm here to help you build awesome websites!")
 $('.owl-carousel').owlCarousel({
     loop: true,
     margin: 10,
-    autoWidth: true,
     autoplay: true,
     autoplayTimeout: 3000,
     autoplayHoverPause: true,
