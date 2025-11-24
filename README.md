@@ -1,3 +1,160 @@
+﻿# Baiscope
+
+[![CI](https://github.com/wadiyage/baiscope/actions/workflows/ci.yml/badge.svg)](https://github.com/wadiyage/baiscope/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Technologies](https://img.shields.io/badge/Tech-HTML%20%7C%20CSS%20%7C%20JavaScript-blue.svg)](https://developer.mozilla.org/)
+
+Baiscope is a lightweight, responsive movie-discovery web application that helps users search, discover, and save movies using the OMDb (Open Movie Database) API. It focuses on a clean, accessible UI and a frictionless discovery flow: search by title, discover a random selection, browse by keywords or IMDb ID, view detailed information, and manage favourites.
+
+---
+
+## Features
+
+- **Movie Search by Title** — Find movies by title with poster, year and short info listings.
+- **Random Movie Generator** — "Discover a Movie" picks a random movie to spark inspiration.
+- **Browse by Keyword** — Explore movies using keywords or pre-seeded tags.
+- **Browse by IMDb ID** — Jump directly to a movie using its IMDb ID (e.g., `tt0111161`).
+- **Movie Details Page** — Full detail view with plot, cast, ratings, poster and related links.
+- **Top Rated / Popular Section** — Curated (static) top-rated/popular list (sample JSON data included).
+- **Favourites** — Save favourites using `localStorage` and manage them via `favourites.html`.
+- **Responsive Design** — Built with Bootstrap plus custom CSS for polished desktop and mobile layouts.
+- **Footer & Navigation** — Branding, helpful navigation links and social icons.
+
+---
+
+## Screenshots / Demo
+
+> Placeholder images — replace these with real screenshots or a short demo GIF.
+
+- `docs/screenshot-home.png` — Home / Search view
+- `docs/screenshot-detail.png` — Movie Details page
+- `docs/demo.gif` — Quick walkthrough GIF
+
+Place screenshots in `docs/` or `assets/images/` and update the paths above.
+
+---
+
+## Demo (Quick start)
+
+Clone the repository and open the app locally.
+
+```powershell
+git clone https://github.com/wadiyage/baiscope.git
+cd baiscope
+```
+
+Option A — Quick (open locally):
+
+```powershell
+# Open index.html in your browser (double-click or use 'start')
+start index.html
+```
+
+Option B — Run a simple HTTP server (recommended to avoid CORS issues):
+
+```powershell
+# Python 3
+python -m http.server 8000
+# then open http://localhost:8000
+
+# Or use `serve` from npm
+npm install -g serve
+serve -s . -l 8000
+```
+
+---
+
+## Setup & Configuration
+
+- This is a static front-end project — no build step is required.
+- To enable live OMDb lookups you'll need an OMDb API key: http://www.omdbapi.com/
+
+How to configure the API key (quick):
+
+1. Obtain an API key from OMDb.
+2. In `assets/js/api.js` set the key where indicated (e.g., `const OMDB_API_KEY = 'YOUR_KEY_HERE';`).
+
+Security note: embedding API keys in client-side code is suitable for demos only. For production, use a server-side proxy to keep keys private.
+
+---
+
+## Usage
+
+- **Search:** Use the main search box on `index.html` to search by movie title.
+- **Discover (Random):** Click the Discover/Random button to load a random movie.
+- **Browse by Keyword:** Click on keyword links or enter keywords to filter results.
+- **IMDb ID lookup:** Use the IMDb ID field to open a specific movie details page.
+- **Movie details:** Click a movie card to open the details page (`movie-details.html` / `movie.html`).
+- **Add to favourites:** On a details page click the favourites icon to store the movie in `localStorage`. View favourites on `favourites.html`.
+
+---
+
+## Folder Structure
+
+```
+/ (project root)
+├─ index.html                 # Home / Search
+├─ movie.html                 # Movie details view
+├─ favourites.html            # Saved favourites
+├─ assets/
+│  ├─ css/                   # Styles: style.css, movie.css, responsive.css
+│  ├─ js/                    # App scripts: api.js, main.js, detail.js, utils.js
+│  ├─ images/                # Posters, icons, placeholders
+│  └─ data/                  # Sample data (e.g., topRated.json)
+├─ owl-carousel/             # Carousel plugin assets
+└─ docs/                     # (optional) screenshots and docs
+```
+
+---
+
+## Contributing
+
+Contributions are welcome — here's how to help:
+
+1. Fork the repository and create a branch named like `feature/xxx` or `fix/xxx`.
+2. Make small, focused commits and keep changes scoped to the feature.
+3. Open a Pull Request describing the change and include screenshots for UI edits.
+4. Ensure accessibility and responsive behavior for UI changes and keep CSS/JS consistent.
+
+If you plan to work on larger features, open an issue first to discuss design and scope.
+
+---
+
+## License
+
+This project is provided under the **MIT License** — see `LICENSE` for full terms.
+
+If you want, I can add a `LICENSE` file with the standard MIT text.
+
+---
+
+## Author / Contact
+
+- **Author:** wadiyage
+- **Repo:** https://github.com/wadiyage/baiscope
+- **Email:** wadiyage567@example.com
+
+Open issues or PRs on GitHub for questions, feature requests, or contributions.
+
+---
+
+## Acknowledgements & References
+
+- OMDb API — http://www.omdbapi.com/
+- Bootstrap — https://getbootstrap.com/
+- Owl Carousel — https://owlcarousel2.github.io/OwlCarousel2/
+- Shields.io — https://shields.io/ (badges)
+
+---
+
+## Roadmap / Future Improvements
+
+- Move OMDb API calls to a server-side proxy to protect API keys.
+- Add automated CI checks (lint, accessibility, basic UI tests) and a GitHub Actions workflow.
+- Add a polished screenshot gallery and demo GIFs under `docs/`.
+- Add unit tests for JS utilities and UI components.
+
+If you want me to add any of the above (LICENSE, screenshots, CI), tell me which and I'll add them.
 # Baiscope
 
 ![Baiscope Logo](./assets/images/logo-placeholder.png)
