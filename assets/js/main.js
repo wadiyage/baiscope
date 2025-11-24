@@ -1,8 +1,6 @@
 import { fetchMoviesByTitle, fetchMovieDetails } from "./api.js"
 import { createMovieCard, showSearchResultsSection, clearResults, showNoResults, hideNoResults, updateResultsCount, appendCard } from "./ui.js"
 
-console.log("Hi, I'm JS, and I'm here to help you build awesome websites!")
-
 $('.owl-carousel').owlCarousel({
     loop: true,
     margin: 10,
@@ -35,8 +33,6 @@ $('.owl-carousel').owlCarousel({
         }
     }
 })
-
-
 
 async function displaySearchResults(title) {
     clearResults()
@@ -73,5 +69,36 @@ document.getElementById('searchInput').addEventListener('keydown', (event) => {
     }
 })
 
+async function discoverRandomMovie() {
+    const RANDOM_MOVIES = [
+        "tt1160419", "tt10872600", "tt8847712", "tt9639470", "tt2382320",
+        "tt6710474", "tt1745960", "tt1877830", "tt11886850", "tt8178634",
+        "tt14444726", "tt1630029", "tt15398776", "tt11214590", "tt9813776",
+        "tt14849194", "tt7160372", "tt17009710", "tt14230458", "tt17351924",
+        "tt9603212", "tt10366206", "tt1517268", "tt1136617", "tt15239678",
+        "tt17279496", "tt17009710", "tt9214772", "tt5535276", "tt1684562",
+        "tt13433802", "tt6263850", "tt22022452", "tt12037194", "tt22022426",
+        "tt15454066", "tt15172680", "tt6850440", "tt12584954", "tt27882189",
+        "tt15314262", "tt6166392", "tt13287846", "tt22687790", "tt16428256",
+        "tt13833688", "tt19770238", "tt9764362", "tt11564570", "tt12593682"
+    ];
 
+    const poster = document.getElementById("discoverPoster")
+    poster.style.opacity = 0.5
 
+    const randomID = RANDOM_MOVIES[Math.floor(Math.random() * RANDOM_MOVIES.length)]
+    const movie = await fetchMovieDetails(randomID)
+    if (!movie) return
+
+    document.getElementById("discoverTitle").innerText = movie.Title
+    document.getElementById("discoverRating").innerText = movie.imdbRating !== "N/A" ? movie.imdbRating : "No rating"
+    document.getElementById("discoverPlot").innerText = movie.Plot
+    document.getElementById("discoverDirector").innerText = movie.Director
+    document.getElementById("discoverActors").innerText = movie.Actors
+    document.getElementById("discoverPoster").src = movie.Poster !== "N/A" ? movie.Poster : "assets/images/no-poster.png"
+    document.getElementById("discoverLink").href = `movie-details.html?id=${movie.imdbID}`
+
+    poster.style.opacity = 1
+ }
+
+document.querySelector('#discoverBtn').addEventListener("click", discoverRandomMovie)
