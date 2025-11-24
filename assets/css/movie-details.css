@@ -1,0 +1,51 @@
+:root {
+    --poster-max-width: 320px;
+}
+
+.poster {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 767.98px) {
+    :root {
+        --poster-max-width: 260px;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+}
+
+.badge {
+    font-size: 0.85em;
+}
+
+.poster[alt="No poster available"] {
+    background-color: #f4f4f4;
+}
+
+.sticky-actions {
+    position: sticky;
+    bottom: 0.5rem;
+    background: linear-gradient(180deg, transparent, #ffffffee);
+    padding: 0.5rem 0;
+}
+
+.card .card-img-top {
+    height: 220px;
+    object-fit: cover;
+}
+
+#plot {
+    line-height: 1.6;
+}
+
+header #headerTitle {
+    max-width: calc(100% - 120px);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

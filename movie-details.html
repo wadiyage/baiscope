@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Movie Details — Baiscope</title>
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/movie-details.css">
+</head>
+
+<body>
+
+    <header class="sticky-top bg-white border-bottom shadow-sm">
+        <div class="container py-2 d-flex align-items-center">
+            <button id="backBtn" class="btn btn-outline-secondary btn-sm me-3">&larr; Back</button>
+            <h6 id="headerTitle" class="mb-0 text-truncate">Baiscope — Movie Details</h6>
+        </div>
+    </header>
+
+    <main class="container my-4">
+
+        <div id="message"></div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+
+                <img id="poster" class="poster w-100 mb-3" src="" alt="Movie Poster">
+
+                <div class="bg-light p-3 rounded shadow-sm">
+
+                    <h5 id="title" class="fw-bold"></h5>
+
+                    <div class="mt-2 small">
+                        <strong>Year:</strong> <span id="year">—</span><br>
+                        <strong>Released:</strong> <span id="released">—</span><br>
+                        <strong>Runtime:</strong> <span id="runtime">—</span><br>
+                        <strong>Language:</strong> <span id="language">—</span><br>
+                        <strong>Country:</strong> <span id="country">—</span><br>
+                    </div>
+
+                    <div class="mt-3">
+                        <strong>IMDb Rating:</strong>
+                        <span id="imdbRating" class="ms-2">—</span>
+                    </div>
+
+                    <div class="mt-3">
+                        <strong>Genres:</strong>
+                        <div id="genreBadges" class="mt-1"></div>
+                    </div>
+
+                    <div class="mt-3">
+                        <strong>Director:</strong> <span id="director">—</span>
+                    </div>
+
+                    <div class="mt-2">
+                        <strong>Main Actors:</strong>
+                        <span id="actors">—</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-8">
+
+                <div class="card shadow-sm">
+                    <div class="card-body">
+
+                        <h3 id="detailTitle" class="fw-bold"></h3>
+
+                        <p id="plot" class="mt-3"></p>
+
+                        <hr>
+
+                        <h5>Cast & Crew</h5>
+                        <p id="castList" class="mb-3">—</p>
+
+                        <h5>Additional Details</h5>
+                        <div class="small">
+                            <strong>Box Office:</strong> <span id="boxoffice">—</span><br>
+                            <strong>Awards:</strong> <span id="awards">—</span><br>
+                        </div>
+
+                        <div class="sticky-actions mt-4">
+                            <button id="playTrailerBtn" class="btn btn-outline-primary w-100 mb-2">
+                                Watch Trailer
+                            </button>
+
+                            <button id="favBtn" class="btn btn-primary w-100 mb-2">
+                                Add to Watchlist
+                            </button>
+
+                            <button id="shareBtn" class="btn btn-outline-secondary w-100">
+                                Share
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <h4 class="mt-5 mb-3">You may also like</h4>
+                <div id="similarGrid" class="row g-3"></div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <script src="assets/js/movie-details.js"></script>
+</body>
+
+</html>
