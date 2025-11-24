@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Movie Details — Baiscope</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/movie-details.css">
+  </head>
+  <body>
+    <main class="container my-4" id="main">
+      <!-- Back button -->
+      <div class="mb-3">
+        <button id="backBtn" class="btn btn-outline-secondary btn-sm">&larr; Back to Results</button>
+      </div>
+
+      <!-- Movie hero card -->
+      <div id="movieCard" class="card shadow-sm">
+        <div class="card-body p-3 p-md-4">
+          <div class="row g-3">
+            <!-- Poster -->
+            <div class="col-12 col-md-4 text-center">
+              <img id="poster" src="" alt="Movie poster" class="img-fluid poster rounded">
+            </div>
+
+            <!-- Details -->
+            <div class="col-12 col-md-8">
+              <h1 id="title" class="h4 mb-1"></h1>
+              <div class="mb-2 text-muted small" id="subline">
+                <span id="year"></span>
+                <span class="mx-2">•</span>
+                <span id="runtime"></span>
+                <span class="mx-2">•</span>
+                <span id="language"></span>
+              </div>
+
+              <div id="genreBadges" class="mb-3"></div>
+
+              <p class="mb-2"><strong>IMDb Rating:</strong> <span id="imdbRating" class="badge bg-warning text-dark"></span></p>
+
+              <p class="mb-1"><strong>Director:</strong> <span id="director" class="text-muted"></span></p>
+              <p class="mb-1"><strong>Actors:</strong> <span id="actors" class="text-muted"></span></p>
+
+              <div class="mt-3">
+                <p class="mb-2"><strong>Plot</strong></p>
+                <p id="plot" class="text-muted"></p>
+              </div>
+
+              <div class="d-flex gap-2 mt-3">
+                <button id="favBtn" class="btn btn-primary">Add to Favorites</button>
+                <a id="imdblink" class="btn btn-outline-secondary" target="_blank" rel="noopener">View on IMDb</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages / errors -->
+      <div id="message" class="mt-3" role="status" aria-live="polite"></div>
+    </main>
+
+    <script>
+      // Configuration: Replace with your OMDb API key
+      const OMDB_API_KEY = 'REPLACE_WITH_YOUR_OMDB_KEY';
+
+      // Utility: get query param by name
+      function getQueryParam(name) {
+        return new URLSearchParams(window.location.search).get(name);
+      }
+
+      // DOM refs
+      const posterEl = document.getElementById('poster');
+      const titleEl = document.getElementById('title');
+      const yearEl = document.getElementById('year');
+      const runtimeEl = document.getElementById('runtime');
+      const languageEl = document.getElementById('language');
+      const genreBadgesEl = document.getElementById('genreBadges');
+      const imdbRatingEl = document.getElementById('imdbRating');
+      const directorEl = document.getElementById('director');
+      const actorsEl = document.getElementById('actors');
+      const plotEl = document.getElementById('plot');
+      const favBtn = document.getElementById('favBtn');
+      const backBtn = document.getElementById('backBtn');
+      const messageEl = document.getElementById('message');
+      const imdbLinkEl = document.getElementById('imdblink');
+
+      // Favorite storage key
+      const FAV_KEY = 'baiscope_favourites';
+
+      // Read IMDb ID from URL; e.g. movie-details.html?id=tt0111161
+      const imdbID = getQueryParam('id');
+
+      // Initialize page
+      (function init() {
+        backBtn.addEventListener('click', () => window.history.back());
+
+        if (!imdbID) {
+          showMessage('No movie ID provided in the URL.', 'danger');
+          disableActions();
+          return;
+        }
+
+        fetchMovie(imdbID);
+      })();
+
+      // Disable buttons when needed
+      function disableActions() {
+        favBtn.disabled = true;
+        backBtn.disabled = false;
+      }
+
+      // Show user-facing message
+      function showMessage(text, type = 'info') {
+        messageEl.innerHTML = `<div class="alert alert-${type}" role="alert">${text}</div>`;
+      }
+
+      // Fetch movie data from OMDb API
+      async function fetchMovie(id) {
+        showMessage('Loading movie details...', 'info');
+
+        try {
+          const url = `https://www.omdbapi.com/?apikey=${encodeURIComponent(OMDB_API_KEY)}&i=${encodeURIComponent(id)}&plot=short`;
+          const res = await fetch(url);
+          if (!res.ok) throw new Error('Network response was not ok');
+          const data = await res.json();
+
+          if (data.Response === 'False') {
+            showMessage(data.Error || 'Movie not found.', 'warning');
+            disableActions();
+            return;
+          }
+
+          populateUI(data);
+          showMessage('', '');
+        } catch (err) {
+          console.error(err);
+          showMessage('Failed to load movie data. Check your network and API key.', 'danger');
+          disableActions();
+        }
+      }
+
+      // Populate UI with movie data
+      function populateUI(m) {
+        // Poster (use placeholder when not available)
+        if (m.Poster && m.Poster !== 'N/A') {
+          posterEl.src = m.Poster;
+          posterEl.alt = `${m.Title} poster`;
+        } else {
+          posterEl.src = 'assets/images/placeholder-poster.png';
+          posterEl.alt = 'No poster available';
+        }
+
+        titleEl.textContent = m.Title || '—';
+        yearEl.textContent = m.Year || '—';
+        runtimeEl.textContent = m.Runtime || '—';
+        languageEl.textContent = m.Language || '—';
+
+        // Genres as badges
+        genreBadgesEl.innerHTML = '';
+        if (m.Genre) {
+          m.Genre.split(',').map(g => g.trim()).forEach(genre => {
+            const span = document.createElement('span');
+            span.className = 'badge bg-secondary me-1 mb-1';
+            span.textContent = genre;
+            genreBadgesEl.appendChild(span);
+          });
+        }
+
+        imdbRatingEl.textContent = m.imdbRating && m.imdbRating !== 'N/A' ? `${m.imdbRating} ★` : '—';
+        directorEl.textContent = m.Director || '—';
+        actorsEl.textContent = m.Actors || '—';
+        plotEl.textContent = m.Plot || '—';
+
+        // IMDb link
+        if (m.imdbID) {
+          imdbLinkEl.href = `https://www.imdb.com/title/${m.imdbID}/`;
+        } else {
+          imdbLinkEl.classList.add('disabled');
+          imdbLinkEl.removeAttribute('href');
+        }
+
+        // Favorite button state
+        const favs = getFavorites();
+        const exists = favs.some(item => item.imdbID === m.imdbID);
+        setFavButtonState(exists);
+
+        // Add click handler to save minimal movie info
+        favBtn.onclick = () => toggleFavorite(m);
+      }
+
+      // Favorites helpers
+      function getFavorites() {
+        try {
+          return JSON.parse(localStorage.getItem(FAV_KEY) || '[]');
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveFavorites(list) {
+        localStorage.setItem(FAV_KEY, JSON.stringify(list));
+      }
+
+      function setFavButtonState(isFav) {
+        if (isFav) {
+          favBtn.textContent = 'Added to Favorites';
+          favBtn.classList.remove('btn-primary');
+          favBtn.classList.add('btn-success');
+          favBtn.disabled = false;
+        } else {
+          favBtn.textContent = 'Add to Favorites';
+          favBtn.classList.remove('btn-success');
+          favBtn.classList.add('btn-primary');
+          favBtn.disabled = false;
+        }
+      }
+
+      function toggleFavorite(movie) {
+        const list = getFavorites();
+        const idx = list.findIndex(i => i.imdbID === movie.imdbID);
+        if (idx > -1) {
+          // remove
+          list.splice(idx, 1);
+          saveFavorites(list);
+          setFavButtonState(false);
+          showMessage('Removed from favorites.', 'info');
+        } else {
+          // add minimal info
+          const item = {
+            imdbID: movie.imdbID,
+            Title: movie.Title,
+            Year: movie.Year,
+            Poster: movie.Poster && movie.Poster !== 'N/A' ? movie.Poster : null
+          };
+          list.push(item);
+          saveFavorites(list);
+          setFavButtonState(true);
+          showMessage('Added to favorites.', 'success');
+        }
+      }
+    </script>
+
+  </body>
+</html>

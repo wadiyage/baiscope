@@ -15,43 +15,46 @@
 </head>
 
 <body>
-    <header class="p-3 mb-3 border-bottom text-bg-dark text-white">
-        <div class="container-fluid">
-            <div class="d-flex flex-wrap align-items-center justify-content-between">
-                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-                    <img src="assets/images/icons/baiscope.png" class="" alt="Baiscope" srcset="" width="150">
-                </a>
-                <div class="d-inline-flex align-items-center justify-content-end">
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="#" class="nav-link px-2 link-light">Home</a></li>
-                        <li><a href="#" class="nav-link px-2 link-light">Discover</a></li>
-                        <li>
-                            <div class="nav-link px-2 dropdown text-end">
-                                <a href="#" class="d-block link-light text-decoration-none dropdown-toggle"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Browse
-                                </a>
-                                <ul class="dropdown-menu text-small bg-black">
-                                    <li><a class="dropdown-item link-light" href="#">By Keyword: Action, Love, War,
-                                            Horror, Comedy,
-                                            Sci-Fi</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item link-light" href="#">By IMDb ID</a></li>
-                                    <li><a class="dropdown-item link-light" href="#">By Genre</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li><a href="#" class="nav-link px-2 link-light">Top Rated</a></li>
-                        <li><a href="#" class="nav-link px-2 link-light">Favourites</a></li>
-                    </ul>
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 ms-lg-3" role="search">
-                        <input type="search" class="form-control" placeholder="Find a movie..." aria-label="Search">
-                    </form>
+    <header>
+        <nav class="p-3 mb-3 border-bottom border-body text-bg-dark fixed-top" data-bs-theme="dark">
+            <div class="container-fluid">
+                <div class="d-flex flex-wrap align-items-center justify-content-between">
+                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+                        <img src="assets/images/icons/baiscope.png" class="" alt="Baiscope" srcset="" width="150">
+                    </a>
+                    <div class="d-inline-flex align-items-center justify-content-end">
+                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                            <li><a href="#" class="nav-link px-2 link-light">Home</a></li>
+                            <li><a href="#" class="nav-link px-2 link-light">Discover</a></li>
+                            <li>
+                                <div class="nav-link px-2 dropdown text-end">
+                                    <a href="#" class="d-block link-light text-decoration-none dropdown-toggle"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Browse
+                                    </a>
+                                    <ul class="dropdown-menu text-small bg-black">
+                                        <li><a class="dropdown-item link-light" href="#">By Keyword: Action, Love, War,
+                                                Horror, Comedy,
+                                                Sci-Fi</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item link-light" href="#">By IMDb ID</a></li>
+                                        <li><a class="dropdown-item link-light" href="#">By Genre</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a href="#" class="nav-link px-2 link-light">Top Rated</a></li>
+                            <li><a href="#" class="nav-link px-2 link-light">Favourites</a></li>
+                        </ul>
+                        <form class="col-12 col-lg-auto mb-3 mb-lg-0 ms-lg-3" role="search">
+                            <input type="search" id="searchInput" class="form-control" placeholder="Find a movie..."
+                                aria-label="Search">
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </nav>
     </header>
     <main>
         <section>
@@ -60,14 +63,14 @@
                 <div class="col-lg-6 mx-auto">
                     <p class="lead mb-4">Search by title, keyword, or IMDb ID — powered by the OMDb API.</p>
                     <div class="container col-8 col-md-7 col-lg-6 mb-3">
-                        <input type="search" class="form-control" placeholder="Search for movies, directors, or genres"
-                            aria-label="Search">
+                        <input type="search" id="searchInput" class="form-control"
+                            placeholder="Search for a movie title…" aria-label="Search">
                     </div>
                     <div class="d-grid gap-2 d-flex justify-content-sm-center px-2 px-md-4 px-lg-5 mb-5">
-                        <button type="button" class="btn btn-primary btn-lg flex-fill px-4 me-sm-3">Search
-                        </button> <button type="button" class="btn btn-outline-secondary btn-lg flex-fill px-4">Discover
-                            a Movie
-                        </button>
+                        <button type="button" id="searchBtn"
+                            class="btn btn-primary btn-lg flex-fill px-4 me-sm-3">Search</button>
+                        <button type="button" class="btn btn-outline-secondary btn-lg flex-fill px-4">Discover a
+                            Movie</button>
                     </div>
                 </div>
                 <div class="overflow-hidden" style="max-height: 30vh;">
@@ -77,6 +80,21 @@
                             loading="lazy">
                     </div>
                 </div>
+            </div>
+        </section>
+        <section id="search-results" class="search-results-section" style="display: none;">
+            <div class="container-fluid px-4 py-5 border-bottom">
+                <h1 class="display-6 fw-bold text-body-emphasis lh-1 mb-3">Search Results</h1>
+                <p id="results-count" class="lead"></p>
+                <div id="results-grid" class="album py-5 bg-body-tertiary">
+                    <div class="container">
+                        <div id="cards-container" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        </div>
+                    </div>
+                </div>
+                <p id="no-results" class="text-danger mt-4" style="display:none;">
+                    No movies found. Try another search.
+                </p>
             </div>
         </section>
         <section>
@@ -594,8 +612,8 @@
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Owl Carousel JS -->
     <script src="assets/owl-carousel/owl.carousel.min.js"></script>
-    <!-- Custom JS -->
-    <script src="assets/js/main.js"></script>
+    <!-- Custom JS (Module System) -->
+    <script type="module" src="assets/js/main.js"></script>
 </body>
 
 </html>
