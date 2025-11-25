@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baiscope</title>
-    <!-- Bootstrap Carousel CSS -->
+    <!-- Bootstrap Icons & CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <!-- Owl Carousel CSS -->
     <link rel="stylesheet" href="assets/owl-carousel/owl.carousel.min.css">
@@ -85,14 +86,14 @@
         <section id="search-results" class="search-results-section" style="display: none;">
             <div class="container-fluid px-4 py-5 border-bottom">
                 <h1 class="display-6 fw-bold text-body-emphasis lh-1 mb-3">Search Results</h1>
-                <p id="results-count" class="lead"></p>
-                <div id="results-grid" class="album py-5 bg-body-tertiary">
+                <p id="hero-results-count" class="lead"></p>
+                <div id="hero-results-grid" class="album py-5 bg-body-tertiary">
                     <div class="container">
-                        <div id="cards-container" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        <div id="hero-cards-container" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                         </div>
                     </div>
                 </div>
-                <p id="no-results" class="text-danger mt-4" style="display:none;">
+                <p id="hero-no-results" class="text-danger mt-4" style="display:none;">
                     No movies found. Try another search.
                 </p>
             </div>
@@ -167,28 +168,38 @@
                         <p class="lead">Explore movies by genres, themes, and categories.</p>
                         <div class="d-flex flex-wrap justify-content-left align-items-center text-body-secondary mb-2">
                             <button type="button"
-                                class="btn btn-outline-danger px-4 me-1 me-md-2 mb-1 mb-md-2">Action</button>
+                                class="btn btn-outline-danger keyword-btn px-4 me-1 me-md-2 mb-1 mb-md-2"
+                                data-keyword="Action">Action</button>
                             <button type="button"
-                                class="btn btn-outline-danger px-4 me-1 me-md-2 mb-1 mb-md-2">Romance</button>
+                                class="btn btn-outline-danger keyword-btn px-4 me-1 me-md-2 mb-1 mb-md-2"
+                                data-keyword="Romance">Romance</button>
                             <button type="button"
-                                class="btn btn-outline-dark px-4 me-1 me-md-2 mb-1 mb-md-2">Horror</button>
+                                class="btn btn-outline-dark keyword-btn px-4 me-1 me-md-2 mb-1 mb-md-2"
+                                data-keyword="Horror">Horror</button>
                             <button type="button"
-                                class="btn btn-outline-warning px-4 me-1 me-md-2 mb-1 mb-md-2">Comedy</button>
+                                class="btn btn-outline-warning keyword-btn px-4 me-1 me-md-2 mb-1 mb-md-2"
+                                data-keyword="Comedy">Comedy</button>
                             <button type="button"
-                                class="btn btn-outline-info px-4 me-1 me-md-2 mb-1 mb-md-2">Sci-Fi</button>
+                                class="btn btn-outline-info keyword-btn px-4 me-1 me-md-2 mb-1 mb-md-2"
+                                data-keyword="Sci-Fi">Sci-Fi</button>
                             <button type="button"
-                                class="btn btn-outline-secondary px-4 me-1 me-md-2 mb-1 mb-md-2">Thriller</button>
+                                class="btn btn-outline-secondary keyword-btn px-4 me-1 me-md-2 mb-1 mb-md-2"
+                                data-keyword="Thriller">Thriller</button>
                             <button type="button"
-                                class="btn btn-outline-primary px-4 me-1 me-md-2 mb-1 mb-md-2">Fantasy</button>
+                                class="btn btn-outline-primary keyword-btn px-4 me-1 me-md-2 mb-1 mb-md-2"
+                                data-keyword="Fantasy">Fantasy</button>
                             <button type="button"
-                                class="btn btn-outline-danger px-4 me-1 me-md-2 mb-1 mb-md-2">War</button>
+                                class="btn btn-outline-danger keyword-btn px-4 me-1 me-md-2 mb-1 mb-md-2"
+                                data-keyword="War">War</button>
                             <button type="button"
-                                class="btn btn-outline-secondary px-4 me-1 me-md-2 mb-1 mb-md-2">Crime</button>
+                                class="btn btn-outline-secondary keyword-btn px-4 me-1 me-md-2 mb-1 mb-md-2"
+                                data-keyword="Crime">Crime</button>
                             <button type="button"
-                                class="btn btn-outline-success px-4 me-1 me-md-2 mb-1 mb-md-2">Animation</button>
+                                class="btn btn-outline-success keyword-btn px-4 me-1 me-md-2 mb-1 mb-md-2"
+                                data-keyword="Animation">Animation</button>
                         </div>
                         <div class="container px-0 mx-0 mb-3">
-                            <input type="search" class="form-control"
+                            <input type="search" id="keywordInput" class="form-control"
                                 placeholder="Search by your own keyword (ex: vampire, friendship, space...)"
                                 aria-label="Search">
                         </div>
@@ -196,188 +207,69 @@
                 </div>
             </div>
         </section>
+        <section id="browse-keyword-search-results" class="search-results-section" style="display: none;">
+            <div class="container-fluid px-4 py-5 border-bottom">
+                <h1 class="display-6 fw-bold text-body-emphasis lh-1 mb-3">Search Results</h1>
+                <p id="keyword-results-count" class="lead"></p>
+                <div id="keyword-results-grid" class="album py-5 bg-body-tertiary">
+                    <div class="container">
+                        <div id="keyword-cards-container" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        </div>
+                    </div>
+                </div>
+                <p id="keyword-no-results" class="text-danger mt-4" style="display:none;">
+                    No movies found. Try another search.
+                </p>
+            </div>
+        </section>
         <section>
             <div class="container-fluid px-4 py-5 border-bottom">
                 <div class="row align-items-center g-5 py-5">
-                    <div class="col-12 col-lg-6 order-1">
+                    <div class="col-12 col-lg-9 order-1">
                         <h1 class="display-6 fw-bold text-body-emphasis lh-1 mb-3">Browse by IMDb ID</h1>
                         <p class="lead">Find a movie by its unique IMDb identifier.</p>
                         <div class="container px-0 mx-0 mb-3">
                             <div class="d-flex flex-column flex-sm-row gap-2">
-                                <input type="search" class="form-control" placeholder="Enter IMDb ID (e.g., tt3896198)"
-                                    aria-label="Search">
-                                <button type="button" class="btn btn-primary">Fetch Movie
-                                </button>
+                                <input type="search" id="omdbIDInput" class="form-control"
+                                    placeholder="Enter IMDb ID (e.g., tt3896198)" aria-label="Search">
                             </div>
-                            <p class="lead fs-6 fw-lighter fst-italic mb-0 mt-1">Try: tt0133093 (The Matrix), tt0111161
+                            <p class="lead fs-6 fw-lighter fst-italic mb-0 mt-1">Try: tt1312221 (Frankenstein),
+                                tt0111161
                                 (Shawshank Redemption)</p>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 order-2 d-none">
-                        <div
-                            class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                            <div class="col-auto d-none d-lg-block">
-                                <img src="assets/images/Frankenstein (2025) 1.png"
-                                    alt="[Movie Poster – Frankenstein (2025)]" srcset="" height="510">
-                            </div>
-                            <div class="col-6 p-4 d-flex flex-column position-static">
-                                <strong class="d-inline-block mb-2 text-primary-emphasis">
-                                    <ul class="list-group list-group-horizontal">
-                                        <li class="list-group-item">Horror</li>
-                                        <li class="list-group-item">Sci-Fi</li>
-                                        <li class="list-group-item">Drama</li>
-                                    </ul>
-                                    <p class="fs-6 fw-bold ms-1 mt-2">2025</p>
-                                </strong>
-                                <h3 class="mb-0">Frankenstein</h3>
-                                <div
-                                    class="d-flex flex-row justify-content-left align-items-center text-body-secondary">
-                                    <p class="mb-0 me-1">7.6 / 10 (<span>143K ratings</span>)</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-star-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                    </svg>
-                                </div>
-                                <p class="fs-6 fw-light text-body-emphasis mb-0 mt-3"><span
-                                        class="fw-medium text-body-emphasis">Director:</span> Guillermo del Toro </p>
-                                <p class="fs-6 fw-light text-body-emphasis mb-0"><span
-                                        class="fw-medium text-body-emphasis">Writers:</span> Guillermo del Toro, Mary
-                                    Shelley </p>
-                                <p class="fs-6 fw-light text-body-emphasis"><span
-                                        class="fw-medium text-body-emphasis">Stars:</span> Oscar Isaac, Jacob Elordi,
-                                    Christoph Waltz </p>
-                                <p class="card-text mb-auto">Dr. Victor Frankenstein, a brilliant but egotistical
-                                    scientist, brings a creature to life in a monstrous experiment that ultimately leads
-                                    to the undoing of both the creator and his tragic creation.</p>
-                                <p class="fs-6 fw-medium text-body-emphasis mb-0"><span
-                                        class="fw-semibold text-body-emphasis">Runtime:</span> 2h 18m</p>
-                                <p class="fs-6 fw-medium text-body-emphasis mb-0"><span
-                                        class="fw-semibold text-body-emphasis">Rated:</span> PG-13</p>
-                                <p class="fs-6 fw-medium text-body-emphasis mb-0"><span
-                                        class="fw-semibold text-body-emphasis">Language:</span> English</p>
-                                <div class="d-flex flex-wrap">
-                                    <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
-                                        View Details
-                                        <svg class="bi" aria-hidden="true">
-                                            <use xlink:href="#chevron-right"></use>
-                                        </svg>
-                                    </a>
-                                    <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
-                                        Add to Favourites
-                                        <svg class="bi" aria-hidden="true">
-                                            <use xlink:href="#chevron-right"></use>
-                                        </svg>
-                                    </a>
+                    <div id="browse-id-search-results" class="col-12 col-lg-3 order-2 d-none">
+                        <div class="container-fluid px-4 py-5 border-bottom">
+                            <h1 class="display-6 fw-bold text-body-emphasis lh-1 mb-3">Search Results</h1>
+                            <p id="id-results-count" class="lead"></p>
+                            <div id="id-results-grid" class="album py-5 bg-body-tertiary">
+                                <div class="container">
+                                    <div id="id-cards-container">
+                                    </div>
                                 </div>
                             </div>
-
+                            <p id="id-no-results" class="text-danger mt-4" style="display:none;">
+                                No movies found. Try another search.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section>
+        <section class="fav-section">
             <div class="container-fluid px-4 py-5 border-bottom">
                 <h1 class="display-6 fw-bold text-body-emphasis lh-1 mb-3">Favorites</h1>
                 <p class="lead">Your saved movies will appear here. Easily access the films you’ve bookmarked.</p>
-                <div class="album py-5 bg-body-tertiary d-none">
+                <div class="album py-5 bg-body-tertiary fav-empty d-none">
                     <div class="container">
                         <h1 class="mt-5 my-0 py-0">No Favorites Yet</h1>
                         <p class="lead">Start adding movies to your favorites to see them here.</p>
-                        <button type="button" class="btn btn-outline-success">Browse Movies</button>
+                        <button id="browseLatestBtn" type="button" class="btn btn-outline-success">Browse Movies</button>
                     </div>
                 </div>
                 <div class="album py-5 bg-body-tertiary">
                     <div class="container">
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                            <div class="col">
-                                <div class="card shadow-sm">
-                                    <img src="assets/images/Frankenstein (2025).png" alt="Frankenstein (2025)"
-                                        srcset="">
-                                    <div class="card-body">
-                                        <h3 class="fs-3 fw-bold text-body-emphasis">Frankenstein (2025)</h3>
-                                        <div
-                                            class="d-flex flex-row justify-content-left align-items-center text-body-secondary mb-2">
-                                            <p class="mb-0 me-1">7.6/10</p>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                            </svg>
-                                        </div>
-                                        <strong class="d-inline-block mb-2 text-primary-emphasis"><span
-                                                class="fw-bold">Horror</span> | <span class="fw-bold">Sci-Fi</span> |
-                                            <span class="fw-bold">Drama</span></strong>
-                                        <p class="card-text">A brilliant but egotistical scientist creates a living
-                                            creature in a reckless experiment, leading to tragic consequences.</p>
-                                        <div class="d-flex justify-content-start align-items-center gap-2">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View
-                                                Details</button>
-                                            <button type="button"
-                                                class="btn btn-sm btn-outline-secondary">Remove</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card shadow-sm">
-                                    <img src="assets/images/Frankenstein (2025).png" alt="Frankenstein (2025)"
-                                        srcset="">
-                                    <div class="card-body">
-                                        <h3 class="fs-3 fw-bold text-body-emphasis">Frankenstein (2025)</h3>
-                                        <div
-                                            class="d-flex flex-row justify-content-left align-items-center text-body-secondary mb-2">
-                                            <p class="mb-0 me-1">7.6/10</p>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                            </svg>
-                                        </div>
-                                        <strong class="d-inline-block mb-2 text-primary-emphasis"><span
-                                                class="fw-bold">Horror</span> | <span class="fw-bold">Sci-Fi</span> |
-                                            <span class="fw-bold">Drama</span></strong>
-                                        <p class="card-text">A brilliant but egotistical scientist creates a living
-                                            creature in a reckless experiment, leading to tragic consequences.</p>
-                                        <div class="d-flex justify-content-start align-items-center gap-2">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View
-                                                Details</button>
-                                            <button type="button"
-                                                class="btn btn-sm btn-outline-secondary">Remove</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card shadow-sm">
-                                    <img src="assets/images/Frankenstein (2025).png" alt="Frankenstein (2025)"
-                                        srcset="">
-                                    <div class="card-body">
-                                        <h3 class="fs-3 fw-bold text-body-emphasis">Frankenstein (2025)</h3>
-                                        <div
-                                            class="d-flex flex-row justify-content-left align-items-center text-body-secondary mb-2">
-                                            <p class="mb-0 me-1">7.6/10</p>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                            </svg>
-                                        </div>
-                                        <strong class="d-inline-block mb-2 text-primary-emphasis"><span
-                                                class="fw-bold">Horror</span> | <span class="fw-bold">Sci-Fi</span> |
-                                            <span class="fw-bold">Drama</span></strong>
-                                        <p class="card-text">A brilliant but egotistical scientist creates a living
-                                            creature in a reckless experiment, leading to tragic consequences.</p>
-                                        <div class="d-flex justify-content-start align-items-center gap-2">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View
-                                                Details</button>
-                                            <button type="button"
-                                                class="btn btn-sm btn-outline-secondary">Remove</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 browse-latest d-none">
                         </div>
                     </div>
                 </div>

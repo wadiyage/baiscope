@@ -1,9 +1,15 @@
+import { isFavourite } from "./favourite.js"
 function createSearchCard(movie) {
     const col = document.createElement('div')
     col.className = 'col'
 
+    const isFav = isFavourite(movie.imdbID)
+
     col.innerHTML = `
-        <div class="card shadow-sm h-100">
+        <div class="card shadow-sm h-100 position-relative">
+            <button id="fav-btn" class="btn ${isFav ? "btn-danger" : "btn-outline-danger"} position-absolute top-0 end-0 m-2 fav-btn" data-id="${movie.imdbID}">
+                <i class="bi ${isFav ? "bi-heart-fill" : "bi-heart"} fs-4"></i>
+            </button>
             <img src="${movie.Poster !== "N/A" ? movie.Poster : 'assets/images/placeholder.png'}" class="card-img-top" alt="${movie.Title}">
             <div class="card-body d-flex flex-column">
                 <h3 class="fs-3 fw-bold text-body-emphasis">${movie.Title}</h3>
@@ -20,7 +26,7 @@ function createSearchCard(movie) {
                 </strong>
                 <p class="card-text">${movie.Plot || "No description available."}</p>
                 <div class="mt-auto d-flex justify-content-start align-items-center gap-2">
-                    <button type="button" class="btn btn-sm btn-outline-secondary view-details-btn" data-imdbid="${movie.imdbID}">View Details</button>
+                    <a href="movie-details.html?id=${movie.imdbID}" class="btn btn-sm btn-outline-secondary">View Details</a>
                 </div>
             </div>
         </div>
@@ -33,7 +39,10 @@ function createCarouselCard(movie) {
     wrapper.className = 'item'
 
     wrapper.innerHTML = `
-        <div class="card shadow-sm h-100 movie-card">
+        <div class="card shadow-sm h-100 position-relative movie-card">
+            <button class="btn btn-outline-danger position-absolute top-0 end-0 m-2 fav-btn" data-id="${movie.imdbID}">
+                <i class="bi bi-heart fs-4"></i>
+            </button>
             <img src="${movie.Poster !== "N/A" ? movie.Poster : 'assets/images/placeholder.png'}" class="card-img-top" alt="${movie.Title}">
             <div class="card-body d-flex flex-column">
                 <h3 class="fs-3 fw-bold text-body-emphasis">${movie.Title}</h3>
@@ -50,8 +59,9 @@ function createCarouselCard(movie) {
                 </strong>
                 <p class="card-text movie-plot">${movie.Plot || "No description available."}</p>
                 <div class="mt-auto d-flex justify-content-start align-items-center gap-2">
-                    <button type="button" class="btn btn-sm btn-outline-secondary view-details-btn" data-imdbid="${movie.imdbID}">View Details</button>
+                    <a href="movie-details.html?id=${movie.imdbID}" class="btn btn-sm btn-outline-secondary">View Details</a>
                 </div>
+
             </div>
         </div>
     `
@@ -62,34 +72,96 @@ function showSearchResultsSection() {
     document.getElementById('search-results').style.display = 'block'
 }
 
-function clearResults() {
-    document.getElementById('cards-container').innerHTML = ""
+function showBrowseKeywordSearchResultsSection() {
+    document.getElementById('browse-keyword-search-results').style.display = 'block'
 }
 
-function showNoResults() {
-    document.getElementById('no-results').style.display = 'block'
+function showBrowseIDSearchResultsSection() {
+    document.getElementById('browse-id-search-results').style.display = 'block'
 }
 
-function hideNoResults() {
-    document.getElementById('no-results').style.display = 'none'
+function clearSearchResults() {
+    document.getElementById('hero-cards-container').innerHTML = ""
 }
 
-function updateResultsCount(count, title) {
-    const resultsCount = document.getElementById('results-count')
+function clearBrowseKeywordSearchResults() {
+    document.getElementById('keyword-cards-container').innerHTML = ""
+}
+
+function clearBrowseOMDbIDSearchResults() {
+    document.getElementById('id-cards-container').innerHTML = ""
+}
+
+function showSearchNoResults() {
+    document.getElementById('hero-no-results').style.display = 'block'
+}
+
+function hideSearchNoResults() {
+    document.getElementById('hero-no-results').style.display = 'none'
+}
+
+function showBrowseKeywordSearchNoResults() {
+    document.getElementById('keyword-no-results').style.display = 'block'
+}
+
+function hideBrowseKeywordSearchNoResults() {
+    document.getElementById('keyword-no-results').style.display = 'none'
+}
+
+function showBrowseOMDbIDSearchNoResults() {
+    document.getElementById('id-no-results').style.display = 'block'
+}
+
+function hideBrowseOMDbIDSearchNoResults() {
+    document.getElementById('id-no-results').style.display = 'none'
+}
+
+function updateSearchResultsCount(count, title) {
+    const resultsCount = document.getElementById('hero-results-count')
     resultsCount.textContent = `${count} movies found for "${title}"`
 }
 
-function appendCard(card) {
-    document.getElementById('cards-container').appendChild(card)
+function updateBrowseKeywordSearchResultsCount(count, title) {
+    const resultsCount = document.getElementById('keyword-results-count')
+    resultsCount.textContent = `${count} movies found for "${title}"`
+}
+
+function updateBrowseOMDbIDSearchResultsCount(count, title) {
+    const resultsCount = document.getElementById('id-results-count')
+    resultsCount.textContent = `${count} movies found for "${title}"`
+}
+
+function appendSearchCard(card) {
+    document.getElementById('hero-cards-container').appendChild(card)
+}
+
+function appendBrowseKeywordSearchCard(card) {
+    document.getElementById('keyword-cards-container').appendChild(card)
+}
+
+function appendBrowseOMDbIDSearchCard(card) {
+    document.getElementById('id-cards-container').appendChild(card)
 }
 
 export {
     createSearchCard,
     createCarouselCard,
     showSearchResultsSection,
-    clearResults,
-    showNoResults,
-    hideNoResults,
-    updateResultsCount,
-    appendCard
+    showBrowseKeywordSearchResultsSection,
+    showBrowseIDSearchResultsSection,
+    clearSearchResults,
+    clearBrowseKeywordSearchResults,
+    clearBrowseOMDbIDSearchResults,
+    showSearchNoResults,
+    hideSearchNoResults,
+    showBrowseKeywordSearchNoResults,
+    hideBrowseKeywordSearchNoResults,
+    showBrowseOMDbIDSearchNoResults,
+    hideBrowseOMDbIDSearchNoResults,
+    updateSearchResultsCount,
+    updateBrowseKeywordSearchResultsCount,
+    updateBrowseOMDbIDSearchResultsCount,
+    appendSearchCard,
+    appendBrowseKeywordSearchCard,
+    appendBrowseOMDbIDSearchCard
 }

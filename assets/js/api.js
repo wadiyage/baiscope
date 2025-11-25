@@ -5,17 +5,32 @@ function buildURL(params) {
     return `${BASE_URL}?apikey=${API_KEY}&${params}`
 }
 
-async function fetchMoviesByTitle(title) {
-    if(!title) return null
-    const url = buildURL(`s=${encodeURIComponent(title)}&type=movie`)
-    
+async function fetchMoviesByKeyword(keyword) {
+    if (!keyword) return null
+    const url = buildURL(`s=${encodeURIComponent(keyword)}&type=movie`)
+
     try {
         const res = await fetch(url)
         const data = await res.json()
-        if(data.Response === "False") return []
+        if (data.Response === "False") return []
         return data.Search
-    } catch(error) {
-        console.error("Error fetching movies by title: ", error)
+    } catch (error) {
+        console.error("Error fetching movies by keyword: ", error)
+        return null
+    }
+}
+
+async function fetchMovieByTitle(title) {
+    if (!title) return null
+    const url = buildURL(`t=${encodeURIComponent(title)}&type=movie`)
+
+    try {
+        const res = await fetch(url)
+        const data = await res.json()
+        if (data.Response === "False") return null
+        return data
+    } catch (error) {
+        console.error("Error fetching movie by title: ", error)
         return null
     }
 }
@@ -35,6 +50,7 @@ async function fetchMovieDetails(imdbID) {
 }
 
 export {
-    fetchMoviesByTitle,
+    fetchMoviesByKeyword,
+    fetchMovieByTitle,
     fetchMovieDetails
 }

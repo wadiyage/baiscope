@@ -1,5 +1,27 @@
-import { fetchMoviesByTitle, fetchMovieDetails } from "./api.js"
-import { createSearchCard, createCarouselCard, showSearchResultsSection, clearResults, showNoResults, hideNoResults, updateResultsCount, appendCard } from "./ui.js"
+import { fetchMoviesByKeyword, fetchMovieByTitle, fetchMovieDetails } from "./api.js";
+import {
+    createSearchCard,
+    createCarouselCard,
+    showSearchResultsSection,
+    showBrowseKeywordSearchResultsSection,
+    showBrowseIDSearchResultsSection,
+    clearSearchResults,
+    clearBrowseKeywordSearchResults,
+    clearBrowseOMDbIDSearchResults,
+    showSearchNoResults,
+    hideSearchNoResults,
+    showBrowseKeywordSearchNoResults,
+    hideBrowseKeywordSearchNoResults,
+    showBrowseOMDbIDSearchNoResults,
+    hideBrowseOMDbIDSearchNoResults,
+    updateSearchResultsCount,
+    updateBrowseKeywordSearchResultsCount,
+    updateBrowseOMDbIDSearchResultsCount,
+    appendSearchCard,
+    appendBrowseKeywordSearchCard,
+    appendBrowseOMDbIDSearchCard
+} from "./ui.js";
+import { toggleFavourite, isFavourite, getFavourites } from "./favourite.js";
 
 $('.owl-carousel').owlCarousel({
     loop: true,
@@ -34,46 +56,47 @@ $('.owl-carousel').owlCarousel({
     }
 })
 async function displaySearchResults(title) {
-    clearResults()
+    clearSearchResults()
     showSearchResultsSection()
 
-    const movies = await fetchMoviesByTitle(title)
-    if (!movies || movies.length === 0) {
-        showNoResults()
-        updateResultsCount(0, title)
+    if (!title) return
+
+    const movie = await fetchMovieByTitle(title)
+    if (!movie) {
+        showSearchNoResults()
+        updateSearchResultsCount(0, title)
         return
     }
 
-    hideNoResults()
-    updateResultsCount(movies.length, title)
-
-    const fullDetailsList = await Promise.all(
-        movies.map(movie => fetchMovieDetails(movie.imdbID))
-    )
-
-    fullDetailsList.forEach(movie => {
-        if (movie) appendCard(createSearchCard(movie))
-    })
+    hideSearchNoResults()
+    updateSearchResultsCount(1, title)
+    appendSearchCard(createSearchCard(movie))
 }
 
-document.getElementById('searchInput').addEventListener('keydown', (event) => {
+const searchInput = document.getElementById('searchInput')
+searchInput.addEventListener('keydown', (event) => {
     if (event.key === "Enter") {
         event.preventDefault()
-        const value = document.getElementById('searchInput').value.trim()
-        if (value) displaySearchResults(value)
+        const title = searchInput.value.trim()
+        searchInput.value = ""
+        if (title) displaySearchResults(title)
     }
 })
 
-document.getElementById('searchBtn').addEventListener('click', () => {
-    const searchInput = document.getElementById('searchInput1').value.trim()
-    if (searchInput) displaySearchResults(searchInput)
-})
-
-document.getElementById('searchInput1').addEventListener('keydown', (event) => {
+const searchInput1 = document.getElementById('searchInput1')
+searchInput1.addEventListener('keydown', (event) => {
     if (event.key === "Enter") {
         event.preventDefault()
-        document.getElementById('searchBtn').click()
+        const title = searchInput1.value.trim()
+        searchInput1.value = ""
+        if (title) displaySearchResults(title)
     }
+})
+
+const searchBtn = document.getElementById('searchBtn')
+searchBtn.addEventListener('click', () => {
+    const value = searchInput1.value.trim()
+    if (value) displaySearchResults(value)
 })
 
 async function discoverRandomMovie() {
@@ -135,7 +158,6 @@ async function displayTopRatedMovies() {
         }
     })
 
-    // Reinitialize Owl Carousel
     $('.owl-carousel').trigger('destroy.owl.carousel')
     $('.owl-carousel').owlCarousel({
         loop: true,
@@ -158,3 +180,178 @@ async function displayTopRatedMovies() {
 document.addEventListener('DOMContentLoaded', () => {
     displayTopRatedMovies()
 })
+
+async function displayBrowseKeywordSearchResultsSection(keyword) {
+    clearBrowseKeywordSearchResults()
+    showBrowseKeywordSearchResultsSection()
+
+    if (!keyword) return
+
+    const movies = await fetchMoviesByKeyword(keyword)
+    if (!movies || movies.length === 0) {
+        showBrowseKeywordSearchNoResults()
+        updateBrowseKeywordSearchResultsCount(0, keyword)
+        return
+    }
+
+    hideBrowseKeywordSearchNoResults()
+    updateBrowseKeywordSearchResultsCount(movies.length, keyword)
+
+    const fullDetailsList = await Promise.all(
+        movies.map(movie => fetchMovieDetails(movie.imdbID))
+    )
+
+    fullDetailsList.forEach(movie => {
+        if (movie) appendBrowseKeywordSearchCard(createSearchCard(movie))
+    })
+}
+
+
+const keywordButtons = document.querySelectorAll('.keyword-btn')
+keywordButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        keywordButtons.forEach(btn => btn.classList.remove('active'))
+        button.classList.add('active')
+
+        const keyword = button.dataset.keyword
+        if (keyword) displayBrowseKeywordSearchResultsSection(keyword)
+    })
+})
+
+const keywordInput = document.getElementById('keywordInput');
+keywordInput.addEventListener('keydown', (event) => {
+    if (event.key === "Enter") {
+        event.preventDefault()
+        const keyword = keywordInput.value.trim()
+        keywordInput.value = ""
+        if (keyword) {
+            keywordButtons.forEach(btn => btn.classList.remove('active'))
+            displayBrowseKeywordSearchResultsSection(keyword)
+        }
+    }
+});
+
+async function displayBrowseOMDbIDSearchResultsSection(omdbID) {
+    clearBrowseOMDbIDSearchResults()
+    showBrowseIDSearchResultsSection()
+
+    if (!omdbID) return
+
+    const movie = await fetchMovieDetails(omdbID)
+    if (!movie) {
+        showBrowseOMDbIDSearchNoResults()
+        updateBrowseOMDbIDSearchResultsCount(0, omdbID)
+        return
+    }
+
+    hideBrowseOMDbIDSearchNoResults()
+    updateBrowseOMDbIDSearchResultsCount(1, omdbID)
+    appendBrowseOMDbIDSearchCard(createSearchCard(movie))
+}
+
+const omdbIDInput = document.getElementById('omdbIDInput')
+omdbIDInput.addEventListener('keydown', (event) => {
+    if (event.key === "Enter") {
+        event.preventDefault()
+        const omdbID = omdbIDInput.value.trim()
+        omdbIDInput.value = ""
+        if (omdbID) displayBrowseOMDbIDSearchResultsSection(omdbID)
+    }
+})
+
+const latestMovieIDs = [
+    "tt11315808", // Joker: Folie à Deux
+    "tt1262426",  // Wicked
+    "tt12037194", // Furiosa (already present but keeping as-is)
+    "tt6263850",  // Deadpool & Wolverine (already present)
+    "tt32820897", // Demon Slayer: Infinity Castle
+    "tt28650488", // Super Mario Galaxy Movie
+    "tt1757678", // Avatar: Fire and Ash
+    "tt22898462", // The Conjuring: Last Rites
+    "tt4712810",  // Now You See Me: Now You Don't
+    "tt11378946", // Michael
+    "tt21357150", // Avengers: Doomsday
+    "tt0427340",  // Masters of the Universe
+    "tt19847976", // Wicked: For Good
+    "tt17023012", // The Home
+    "tt2049403"   // Beetlejuice Beetlejuice
+]
+
+document.addEventListener("click", async (event) => {
+    const btn = event.target.closest(".fav-btn")
+    if (!btn) return
+
+    const omdbID = btn.dataset.id
+
+    toggleFavourite(omdbID)
+
+    const isFav = isFavourite(omdbID)
+
+    btn.classList.toggle("btn-danger", isFav)
+    btn.classList.toggle("btn-outline-danger", !isFav)
+
+    const icon = btn.querySelector("i")
+    icon.classList.toggle("bi-heart-fill", isFav)
+    icon.classList.toggle("bi-heart", !isFav)
+
+    if (document.body.classList.contains("fav-page")) {
+        loadFavourites()
+    }
+})
+
+async function loadFavourites() {
+    const container = document.querySelector(
+        ".fav-section .row"
+    )
+
+    const emptyState = document.querySelector(".fav-empty")
+    container.innerHTML = ""
+
+    const favs = getFavourites()
+    if (favs.length === 0) {
+        emptyState.classList.remove("d-none")
+        return
+    }
+
+    emptyState.classList.add("d-none")
+
+    const movies = await Promise.all(
+        favs.map(id => fetchMovieDetails(id))
+    )
+
+    movies.forEach(movie => {
+        container.appendChild(createSearchCard(movie))
+    })
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (document.querySelector(".fav-section")) {
+        document.body.classList.add("fav-page")
+        loadFavourites()
+    }
+})
+
+async function loadLatestMovies() {
+    const container = document.querySelector(".browse-latest")
+    container.innerHTML = ""
+
+    const movies = await Promise.all(
+        latestMovieIDs.map(id => fetchMovieDetails(id))
+    )
+
+    movies.forEach(movie => {
+        if(movie) {
+            container.appendChild(createSearchCard(movie))
+        }
+    })
+
+    container.classList.remove("d-none")
+}
+
+const browseLatestBtn = document.getElementById("browseLatestBtn")
+if(browseLatestBtn) {
+    browseLatestBtn.addEventListener("click", () => {
+        document.querySelector(".fav-empty").classList.add("d-none")
+        loadLatestMovies()
+    })
+}

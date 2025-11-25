@@ -70,3 +70,12 @@ body {
         height: 160px;
     }
 }
+
+.keyword-btn.active {
+    border-width: 2px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.keyword-btn:hover {
+    border-width: 2px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
