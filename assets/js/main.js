@@ -340,7 +340,7 @@ async function loadLatestMovies() {
     )
 
     movies.forEach(movie => {
-        if(movie) {
+        if (movie) {
             container.appendChild(createSearchCard(movie))
         }
     })
@@ -349,7 +349,7 @@ async function loadLatestMovies() {
 }
 
 const browseLatestBtn = document.getElementById("browseLatestBtn")
-if(browseLatestBtn) {
+if (browseLatestBtn) {
     browseLatestBtn.addEventListener("click", () => {
         document.querySelector(".fav-empty").classList.add("d-none")
         loadLatestMovies()
