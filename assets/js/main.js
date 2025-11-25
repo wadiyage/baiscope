@@ -1,5 +1,5 @@
 import { fetchMoviesByTitle, fetchMovieDetails } from "./api.js"
-import { createMovieCard, showSearchResultsSection, clearResults, showNoResults, hideNoResults, updateResultsCount, appendCard } from "./ui.js"
+import { createSearchCard, createCarouselCard, showSearchResultsSection, clearResults, showNoResults, hideNoResults, updateResultsCount, appendCard } from "./ui.js"
 
 $('.owl-carousel').owlCarousel({
     loop: true,
@@ -33,7 +33,6 @@ $('.owl-carousel').owlCarousel({
         }
     }
 })
-
 async function displaySearchResults(title) {
     clearResults()
     showSearchResultsSection()
@@ -53,16 +52,24 @@ async function displaySearchResults(title) {
     )
 
     fullDetailsList.forEach(movie => {
-        if (movie) appendCard(createMovieCard(movie))
+        if (movie) appendCard(createSearchCard(movie))
     })
 }
 
+document.getElementById('searchInput').addEventListener('keydown', (event) => {
+    if (event.key === "Enter") {
+        event.preventDefault()
+        const value = document.getElementById('searchInput').value.trim()
+        if (value) displaySearchResults(value)
+    }
+})
+
 document.getElementById('searchBtn').addEventListener('click', () => {
-    const searchInput = document.getElementById('searchInput').value.trim()
+    const searchInput = document.getElementById('searchInput1').value.trim()
     if (searchInput) displaySearchResults(searchInput)
 })
 
-document.getElementById('searchInput').addEventListener('keydown', (event) => {
+document.getElementById('searchInput1').addEventListener('keydown', (event) => {
     if (event.key === "Enter") {
         event.preventDefault()
         document.getElementById('searchBtn').click()
@@ -99,6 +106,55 @@ async function discoverRandomMovie() {
     document.getElementById("discoverLink").href = `movie-details.html?id=${movie.imdbID}`
 
     poster.style.opacity = 1
- }
+}
 
 document.querySelector('#discoverBtn').addEventListener("click", discoverRandomMovie)
+
+const TOP_RATED_MOVIES = [
+    "tt0111161", // The Shawshank Redemption
+    "tt0068646", // The Godfather
+    "tt0468569", // The Dark Knight
+    "tt0108052", // Schindler's List
+    "tt0167260", // The Lord of the Rings: The Return of the King
+    "tt0137523", // Fight Club
+    "tt1375666"  // Inception
+];
+
+
+async function displayTopRatedMovies() {
+    const carousel = document.querySelector('.owl-carousel')
+    carousel.innerHTML = ""
+
+    const movies = await Promise.all(
+        TOP_RATED_MOVIES.map(id => fetchMovieDetails(id))
+    )
+
+    movies.forEach(movie => {
+        if (movie) {
+            carousel.appendChild(createCarouselCard(movie))
+        }
+    })
+
+    // Reinitialize Owl Carousel
+    $('.owl-carousel').trigger('destroy.owl.carousel')
+    $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 10,
+        autoplay: true,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true,
+        responsiveClass: true,
+        responsive: {
+            0: { items: 1, nav: true },
+            540: { items: 2, nav: false },
+            720: { items: 3, nav: false },
+            960: { items: 4, nav: true, loop: false },
+            1140: { items: 5, nav: true, loop: false }
+        }
+    })
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    displayTopRatedMovies()
+})
