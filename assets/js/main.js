@@ -301,20 +301,20 @@ document.addEventListener("click", async (event) => {
 })
 
 async function loadFavourites() {
-    const container = document.querySelector(
-        ".fav-section .row"
-    )
-
+    const container = document.querySelector(".fav-section .row")
     const emptyState = document.querySelector(".fav-empty")
+
     container.innerHTML = ""
 
     const favs = getFavourites()
     if (favs.length === 0) {
         emptyState.classList.remove("d-none")
+        container.classList.add("d-none")
         return
     }
 
     emptyState.classList.add("d-none")
+    container.classList.remove("d-none")
 
     const movies = await Promise.all(
         favs.map(id => fetchMovieDetails(id))
