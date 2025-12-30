@@ -30,9 +30,9 @@ Baiscope is a responsive movie discovery web application built with HTML, CSS, J
 
 > Placeholder screenshots - replace with actual images
 
-- ![Home Page](assets/images/screenshot.png) - Main search and discovery interface
-- ![Movie Details](assets/images/screenshot3.png) - Detailed movie information page
-- ![Demo GIF](assets/images/screenshot2.png) - Quick walkthrough of the app functionality
+- ![Home Page](assets/images/screenshots/screenshot.png) - Main search and discovery interface 
+- ![Movie Details](assets/images//screenshots/screenshot3.png) - Detailed movie information page
+- ![Demo GIF](assets/images/screenshots/screenshot2.png) - Quick walkthrough of the app functionality
 
 ## Installation
 
