@@ -8,6 +8,13 @@ Baiscope is a lightweight, responsive movie-discovery web application that helps
 
 ---
 
+## Live Preview & Demo
+
+[![Live Preview](https://img.shields.io/badge/Live-Preview-brightgreen)](https://baiscope.pages.dev)
+▶️ [Baiscope Movie Explorer Demo](https://youtu.be/9VPCZwnCpBw)
+
+---
+
 ## Features
 
 - **Movie Search by Title** — Find movies by title with poster, year and short info listings.
