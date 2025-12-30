@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Privacy Policy — Baiscope</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+      body { background: #ffffff; }
+      .hero { padding: 3.5rem 0; }
+      .card { border-radius: .5rem; }
+      footer { padding: 1.25rem 0; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+              <h1 class="display-6">Privacy Policy</h1>
+              <p class="text-muted">Short and clear summary of data practices for this student project.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-3">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <h2 class="h6">Introduction</h2>
+                  <p class="small text-muted">Baiscope is a student project built for learning and demonstration purposes. The website does not collect personal data from visitors. Movie information displayed on the site is retrieved from the public OMDb API.</p>
+
+                  <h3 class="h6 mt-3">Data We Collect</h3>
+                  <ul class="small text-muted">
+                    <li>No accounts or user registration.</li>
+                    <li>No login system or server-side user profiles.</li>
+                    <li>No user tracking or analytics are enabled by default.</li>
+                    <li>No cookies are set by the app except browser-default cookies (session cookies handled by the browser).</li>
+                  </ul>
+
+                  <h3 class="h6 mt-3">Third-Party Services</h3>
+                  <p class="small text-muted">Baiscope uses the OMDb API to fetch movie metadata (titles, posters, ratings). No personal user data is shared with OMDb as part of normal site usage.</p>
+
+                  <h3 class="h6 mt-3">Favourites Feature</h3>
+                  <p class="small text-muted">The favourites feature stores data locally in your browser using <code>localStorage</code>. Favourites remain on your device and are not sent to or stored on any external server.</p>
+
+                  <h3 class="h6 mt-3">Changes to This Policy</h3>
+                  <p class="small text-muted">This Privacy Policy may be updated in the future. If changes are made, they will be posted on this page.</p>
+
+                  <h3 class="h6 mt-3">Contact</h3>
+                  <p class="small text-muted">If you have privacy concerns or questions, please contact: <a href="mailto:info@baiscope.lk">privacy@baiscope.lk</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-top mt-4">
+      <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <p class="mb-2 mb-md-0 text-muted">&copy; <span id="year"></span> Baiscope</p>
+        <nav>
+          <a href="about.html" class="me-3 text-decoration-none">About</a>
+          <a href="contact.html" class="me-3 text-decoration-none">Contact</a>
+          <a href="privacy.html" class="text-decoration-none">Privacy Policy</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  </body>
+</html>

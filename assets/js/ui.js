@@ -77,7 +77,8 @@ function showBrowseKeywordSearchResultsSection() {
 }
 
 function showBrowseIDSearchResultsSection() {
-    document.getElementById('browse-id-search-results').style.display = 'block'
+    const section = document.getElementById('browse-id-search-results')
+    section.classList.remove('d-none')
 }
 
 function clearSearchResults() {

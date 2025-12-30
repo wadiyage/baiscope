@@ -249,7 +249,8 @@ async function displayBrowseOMDbIDSearchResultsSection(omdbID) {
     appendBrowseOMDbIDSearchCard(createSearchCard(movie))
 }
 
-const omdbIDInput = document.getElementById('omdbIDInput')
+let omdbIDInput = document.getElementById('omdbIDInput')
+console.log(omdbIDInput)
 omdbIDInput.addEventListener('keydown', (event) => {
     if (event.key === "Enter") {
         event.preventDefault()
